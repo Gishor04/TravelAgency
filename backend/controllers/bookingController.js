@@ -42,7 +42,6 @@ export const createBooking = async (req, res) => {
     const bookingNumber = 'GLB-' + Math.floor(100000 + Math.random() * 900000);
     const transactionId = 'TXN-' + Math.floor(10000000 + Math.random() * 90000000);
 
-    // Determine booking User ID
     let userId = req.user ? (req.user._id || req.user.id) : null;
     if (!userId && passengers.length > 0 && passengers[0].email) {
       try {
@@ -115,6 +114,10 @@ export const createBooking = async (req, res) => {
 
 export const getMyBookings = async (req, res) => {
   try {
+    if (!req.user) {
+      return res.json({ success: true, count: 0, bookings: [] });
+    }
+
     let bookings = [];
     try {
       const userObjId = req.user._id || req.user.id;

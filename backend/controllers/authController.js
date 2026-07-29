@@ -197,9 +197,13 @@ export const adminLogin = async (req, res) => {
 
 export const getMe = async (req, res) => {
   try {
+    if (!req.user) {
+      return res.json({ success: true, user: null });
+    }
+
     let user;
     try {
-      if (req.user && req.user._id) {
+      if (req.user._id) {
         user = await User.findById(req.user._id);
       }
     } catch (e) {
@@ -208,10 +212,10 @@ export const getMe = async (req, res) => {
 
     if (!user) {
       user = {
-        _id: req.user ? (req.user._id || req.user.id) : 'guest_id',
-        name: req.user ? (req.user.name || 'Globevia Traveler') : 'Globevia Traveler',
-        email: req.user ? (req.user.email || 'traveler@globeviatravel.com') : 'traveler@globeviatravel.com',
-        role: req.user ? (req.user.role || 'user') : 'user',
+        _id: req.user._id || req.user.id,
+        name: req.user.name || 'Globevia Traveler',
+        email: req.user.email || 'traveler@globeviatravel.com',
+        role: req.user.role || 'user',
         avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400'
       };
     }
