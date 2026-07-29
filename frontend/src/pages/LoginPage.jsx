@@ -20,7 +20,7 @@ export default function LoginPage() {
     try {
       if (isRegister) {
         await register(name, email, password, phone);
-        showNotify('Registration successful! Welcome to Aura 2026.', 'success');
+        showNotify('Registration successful! Welcome to Globevia Travel 2026.', 'success');
       } else {
         await login(email, password);
         showNotify('Signed in successfully!', 'success');
@@ -40,7 +40,7 @@ export default function LoginPage() {
           <div style={{ background: 'var(--accent-gradient)', width: '50px', height: '50px', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px auto' }}>
             <Compass color="#fff" size={28} />
           </div>
-          <h2 style={{ fontSize: '1.8rem', fontWeight: 800 }}>{isRegister ? 'Create VIP Account' : 'Sign In to Aura'}</h2>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 800 }}>{isRegister ? 'Create VIP Account' : 'Sign In to Globevia'}</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Access your itineraries, bookings, and VIP concierge</p>
         </div>
 
@@ -72,20 +72,6 @@ export default function LoginPage() {
 
           <button type="submit" className="btn-gold" style={{ width: '100%', justifyContent: 'center', padding: '14px', marginTop: '10px' }}>
             {isRegister ? 'Complete Registration' : 'Sign In'}
-          </button>
-
-          {/* Google OAuth Simulation Button */}
-          <button
-            type="button"
-            onClick={() => {
-              login('sophia@example.com', 'password123');
-              showNotify('Google OAuth Sign In Successful!', 'success');
-              navigate('/dashboard');
-            }}
-            className="btn-outline"
-            style={{ width: '100%', justifyContent: 'center', padding: '12px', fontSize: '0.9rem' }}
-          >
-            Continue with Google
           </button>
 
         </form>

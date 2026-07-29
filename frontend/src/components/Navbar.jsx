@@ -20,10 +20,10 @@ export default function Navbar() {
           </div>
           <div>
             <span style={{ fontSize: '1.5rem', fontWeight: 800, background: 'var(--accent-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              AURA
+              GLOBEVIA
             </span>
             <span style={{ fontSize: '0.75rem', display: 'block', color: 'var(--accent-gold)', fontWeight: 600, letterSpacing: '0.15em' }}>
-              LUXURY 2026
+              TRAVEL 2026
             </span>
           </div>
         </RouterLink>

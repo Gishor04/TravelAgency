@@ -56,7 +56,7 @@ export default function AIPlannerPage() {
           Smart AI Trip Planner
         </h1>
         <p style={{ color: 'var(--text-secondary)', maxWidth: '650px', margin: '0 auto' }}>
-          Provide your preferences and let our AI engine generate a bespoke day-by-day itinerary with budget allocation and restaurant recommendations.
+          Provide your preferences and let our Globevia AI engine generate a bespoke day-by-day itinerary with budget allocation and restaurant recommendations.
         </p>
       </div>
 
@@ -148,7 +148,7 @@ export default function AIPlannerPage() {
           {loading ? (
             <div className="glass-panel" style={{ padding: '80px', textAlign: 'center' }}>
               <RefreshCw size={36} color="var(--accent-gold)" className="spin" style={{ marginBottom: '16px' }} />
-              <h3>Aura AI Neural Engine is planning your itinerary...</h3>
+              <h3>Globevia AI Neural Engine is planning your itinerary...</h3>
               <p style={{ color: 'var(--text-secondary)', marginTop: '8px' }}>Analyzing weather forecasts, top 5-star resort options, and fine dining locations.</p>
             </div>
           ) : !itineraryResult ? (

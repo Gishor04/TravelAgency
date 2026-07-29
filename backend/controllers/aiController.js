@@ -19,13 +19,13 @@ export const handleChat = async (req, res) => {
     } else if (lowerMsg.includes('hotel') || lowerMsg.includes('stay')) {
       responseText = "We partner exclusively with top 5-star luxury resorts including Viceroy Bali, Soneva Jani Maldives, The Chedi Andermatt Switzerland, and Ceylon Tea Trails. Enjoy complimentary room upgrades and VIP lounge access.";
     } else {
-      responseText = `Thank you for consulting Aura AI 2026! How can I assist you further with destination guides, flight options, customized itineraries, or instant booking for your upcoming journey?`;
+      responseText = `Thank you for consulting Globevia AI 2026! How can I assist you further with destination guides, flight options, customized itineraries, or instant booking for your upcoming journey?`;
     }
 
     if (language === 'ta') {
-      responseText = `[தமிழ்] Aura AI சேவை: ${responseText}`;
+      responseText = `[தமிழ்] Globevia AI சேவை: ${responseText}`;
     } else if (language === 'si') {
-      responseText = `[සිංහල] Aura AI සේවාව: ${responseText}`;
+      responseText = `[සිංහල] Globevia AI සේවාව: ${responseText}`;
     }
 
     res.json({
@@ -82,7 +82,6 @@ export const generateItinerary = async (req, res) => {
       ]
     };
 
-    // Try saving if logged in
     if (req.user) {
       try {
         await Itinerary.create({

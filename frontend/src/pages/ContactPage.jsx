@@ -160,7 +160,7 @@ export default function ContactPage() {
             <Mail size={24} color="var(--text-accent)" />
             <div>
               <h4 style={{ fontSize: '1rem', fontWeight: 700 }}>Email Concierge</h4>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>concierge@auratravels.com</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>concierge@globeviatravel.com</p>
             </div>
           </div>
 

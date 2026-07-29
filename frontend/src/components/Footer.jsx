@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="glass-panel" style={{ padding: '36px', marginBottom: '60px', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
           <div>
             <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '6px' }}>
-              Subscribe to 2026 Secret Flash Deals & AI Guides
+              Subscribe to Globevia Secret Flash Deals & AI Guides
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               Get up to 30% off early bird luxury bookings & seasonal villa deals straight to your inbox.
@@ -63,7 +63,7 @@ export default function Footer() {
                 <Compass color="#fff" size={22} />
               </div>
               <span style={{ fontSize: '1.4rem', fontWeight: 800, background: 'var(--accent-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                AURA 2026
+                GLOBEVIA 2026
               </span>
             </div>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '20px' }}>
@@ -109,7 +109,7 @@ export default function Footer() {
                 <Phone size={14} color="var(--text-accent)" /> +1 (800) 987-6543 / +94 77 123 4567
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Mail size={14} color="var(--text-accent)" /> concierge@auratravels.com
+                <Mail size={14} color="var(--text-accent)" /> concierge@globeviatravel.com
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <MapPin size={14} color="var(--text-accent)" /> 777 Luxury Blvd, Financial District

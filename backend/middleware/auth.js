@@ -16,13 +16,33 @@ export const protect = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
     req.user = await User.findById(decoded.id).select('-password');
     if (!req.user) {
-      // Fallback mock user if DB is in memory or mock mode
-      req.user = { _id: decoded.id, role: decoded.role || 'user', name: 'Traveler' };
+      req.user = { _id: decoded.id, id: decoded.id, role: decoded.role || 'user', name: 'Traveler' };
     }
     next();
   } catch (err) {
     return res.status(401).json({ success: false, message: 'Token verification failed' });
   }
+};
+
+export const optionalAuth = async (req, res, next) => {
+  let token;
+
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
+      req.user = await User.findById(decoded.id).select('-password');
+      if (!req.user) {
+        req.user = { _id: decoded.id, id: decoded.id, role: decoded.role || 'user', name: 'Traveler' };
+      }
+    } catch (err) {
+      req.user = null;
+    }
+  }
+  next();
 };
 
 export const authorize = (...roles) => {

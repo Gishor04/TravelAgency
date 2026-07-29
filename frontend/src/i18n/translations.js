@@ -4,11 +4,11 @@ export const translations = {
     heroSubtitle: "Curated 5-Star Destinations & Intelligent AI Trip Planning",
     searchPlaceholder: "Where do you wish to journey?",
     searchBtn: "Search Destinations",
-    aiAssistantTitle: "Aura 2026 AI Assistant",
+    aiAssistantTitle: "Globevia 2026 AI Assistant",
     aiPlannerTitle: "Generate Custom AI Itinerary",
     trendingTours: "Trending Tour Packages",
     popularDestinations: "Popular Destinations",
-    whyChooseUs: "Why Choose Aura Luxury",
+    whyChooseUs: "Why Choose Globevia Travel",
     why1Title: "IATA & License Certified",
     why1Desc: "100% Verified luxury partners & secure reservations.",
     why2Title: "AI Personal Concierge",
@@ -29,18 +29,18 @@ export const translations = {
     navAccount: "My Dashboard",
     reviewsTitle: "Verified Traveler Testimonials",
     specialDeals: "2026 Flash Offers",
-    footerText: "© 2026 Aura Luxury Travels. All Rights Reserved. Crafted for the Modern Explorer."
+    footerText: "© 2026 Globevia Travel. All Rights Reserved. Crafted for the Modern Explorer."
   },
   ta: {
     heroTitle: "2026 ஆம் ஆண்டின் சொகுசு பயணத்தின் புதிய பரிமாணம்",
     heroSubtitle: "5-நட்சத்திர சொகுசு இடங்கள் மற்றும் செயற்கை நுண்ணறிவு பயணத் திட்டமிடுதல்",
     searchPlaceholder: "நீங்கள் எங்கு பயணம் செய்ய விரும்புகிறீர்கள்?",
     searchBtn: "இடங்களைத் தேடுக",
-    aiAssistantTitle: "Aura 2026 AI உதவி",
+    aiAssistantTitle: "Globevia 2026 AI உதவி",
     aiPlannerTitle: "AI பயணத் திட்டத்தை உருவாக்குங்கள்",
     trendingTours: "பிரபலமான சுற்றுலாத் தொகுப்புகள்",
     popularDestinations: "பிரபலமான சுற்றுலா இடங்கள்",
-    whyChooseUs: "ஏன் Aura Luxury-ஐ தேர்ந்தெடுக்க வேண்டும்",
+    whyChooseUs: "ஏன் Globevia Travel-ஐ தேர்ந்தெடுக்க வேண்டும்",
     why1Title: "சான்றளிக்கப்பட்ட நிறுவனம்",
     why1Desc: "100% பாதுகாப்பான மற்றும் சரிபார்க்கப்பட்ட முன்பதிவுகள்.",
     why2Title: "AI தனிப்பட்ட ஆலோசகர்",
@@ -61,18 +61,18 @@ export const translations = {
     navAccount: "எனது கணக்கு",
     reviewsTitle: "பயணிகளின் மதிப்புரைகள்",
     specialDeals: "சிறப்புச் சலுகைகள் 2026",
-    footerText: "© 2026 Aura Luxury Travels. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+    footerText: "© 2026 Globevia Travel. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
   },
   si: {
     heroTitle: "2026 වසරේ ප්‍රමුඛතම සුඛෝපභෝගී සංචාරක අත්දැකීම",
     heroSubtitle: "5-තාරකා සංචාරක ස්ථාන සහ AI බුද්ධිමත් සංචාරක සැලසුම්කරණය",
     searchPlaceholder: "ඔබට සංචාරය කිරීමට අවශ්‍ය කොහේද?",
     searchBtn: "සංචාරක ස්ථාන සොයන්න",
-    aiAssistantTitle: "Aura 2026 AI සහායක",
+    aiAssistantTitle: "Globevia 2026 AI සහායක",
     aiPlannerTitle: "AI සංචාරක සැලසුමක් සාදන්න",
     trendingTours: "ජනප්‍රිය සංචාරක පැකේජ",
     popularDestinations: "ප්‍රසිද්ධ සංචාරක ස්ථාන",
-    whyChooseUs: "Aura Luxury තෝරාගත යුත්තේ ඇයි",
+    whyChooseUs: "Globevia Travel තෝරාගත යුත්තේ ඇයි",
     why1Title: "සහතික ලත් ආයතනය",
     why1Desc: "100% විශ්වාසනීය සහ සුරක්ෂිත වෙන්කිරීම්.",
     why2Title: "AI පෞද්ගලික සහායක",
@@ -93,6 +93,6 @@ export const translations = {
     navAccount: "මගේ ගිණුම",
     reviewsTitle: "සංචාරකයින්ගේ අදහස්",
     specialDeals: "2026 විශේෂ දීමනා",
-    footerText: "© 2026 Aura Luxury Travels. සියලුම හිමිකම් ඇවිරිණි."
+    footerText: "© 2026 Globevia Travel. සියලුම හිමිකම් ඇවිරිණි."
   }
 };

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AIChatbot from './components/AIChatbot';
+import WhatsAppButton from './components/WhatsAppButton';
 import AdminProtectedRoute from './components/AdminProtectedRoute';
 import { useApp } from './context/AppContext';
 
@@ -79,6 +80,9 @@ export default function App() {
 
       {/* Persistent AI Assistant */}
       <AIChatbot />
+
+      {/* Persistent WhatsApp Concierge */}
+      <WhatsAppButton />
 
       {/* Footer */}
       <Footer />

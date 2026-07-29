@@ -7,7 +7,7 @@ export default function AIChatbot() {
   const { lang, t } = useApp();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', text: 'Greetings! I am your Aura 2026 AI Travel Concierge. How may I assist your itinerary, visa, or luxury destination queries today?' }
+    { role: 'assistant', text: 'Greetings! I am your Globevia 2026 AI Travel Concierge. How may I assist your itinerary, visa, or luxury destination queries today?' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -97,7 +97,7 @@ export default function AIChatbot() {
                 <Bot size={18} color="#fff" />
               </div>
               <div>
-                <h4 style={{ fontSize: '0.95rem', fontWeight: 700 }}>Aura 2026 AI Assistant</h4>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 700 }}>Globevia 2026 AI Assistant</h4>
                 <span style={{ fontSize: '0.75rem', color: '#34d399' }}>● Online Concierge</span>
               </div>
             </div>

@@ -33,7 +33,7 @@ export default function BookingPage() {
 
   const handleApplyCoupon = (e) => {
     e.preventDefault();
-    if (couponCode.toUpperCase() === 'AURA2026' || couponCode.toUpperCase() === 'LUXURY20') {
+    if (couponCode.toUpperCase() === 'GLOBEVIA2026' || couponCode.toUpperCase() === 'LUXURY20') {
       const disc = Math.round(bookingState.totalPrice * 0.15);
       setDiscount(disc);
       setCouponApplied(true);
@@ -133,11 +133,11 @@ export default function BookingPage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
             <div>
               <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)', display: 'block', marginBottom: '6px' }}>Full Name</label>
-              <input type="text" required value={fullName} onChange={e => setFullName(e.target.value)} placeholder="John Doe" style={{ width: '100%', background: 'var(--bg-glass-card)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '12px', color: 'var(--text-primary)' }} />
+              <input type="text" required value={fullName} onChange={e => setFullName(e.target.value)} placeholder="Sophia Martinez" style={{ width: '100%', background: 'var(--bg-glass-card)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '12px', color: 'var(--text-primary)' }} />
             </div>
             <div>
               <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)', display: 'block', marginBottom: '6px' }}>Email Address</label>
-              <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="john@example.com" style={{ width: '100%', background: 'var(--bg-glass-card)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '12px', color: 'var(--text-primary)' }} />
+              <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="sophia@example.com" style={{ width: '100%', background: 'var(--bg-glass-card)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '12px', color: 'var(--text-primary)' }} />
             </div>
           </div>
 
@@ -186,7 +186,7 @@ export default function BookingPage() {
 
           {/* Coupon Form */}
           <form onSubmit={handleApplyCoupon} style={{ display: 'flex', gap: '8px', marginBottom: '20px' }}>
-            <input type="text" placeholder="Promo Code (e.g. AURA2026)" value={couponCode} onChange={e => setCouponCode(e.target.value)} style={{ flexGrow: 1, background: 'var(--bg-glass-card)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '10px', color: 'var(--text-primary)', outline: 'none', fontSize: '0.85rem' }} />
+            <input type="text" placeholder="Promo Code (e.g. GLOBEVIA2026)" value={couponCode} onChange={e => setCouponCode(e.target.value)} style={{ flexGrow: 1, background: 'var(--bg-glass-card)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '10px', color: 'var(--text-primary)', outline: 'none', fontSize: '0.85rem' }} />
             <button type="submit" className="btn-outline" style={{ padding: '10px 16px', fontSize: '0.85rem' }}>Apply</button>
           </form>
 

@@ -51,7 +51,7 @@ app.use('/api/v1/content', contentRoutes);
 app.get('/api/v1/health', (req, res) => {
   res.json({
     status: 'online',
-    system: 'Aura 2026 Luxury AI Travel Platform API',
+    system: 'Globevia Travel 2026 REST API',
     timestamp: new Date()
   });
 });
@@ -65,11 +65,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-const DEFAULT_PORT = process.env.PORT || 5000;
+const DEFAULT_PORT = process.env.PORT || 5050;
 
 const startServer = (port) => {
   const server = app.listen(port, () => {
-    console.log(`🚀 Aura 2026 Luxury Travel REST API running on port ${port}`);
+    console.log(`🚀 Globevia Travel 2026 REST API running on port ${port}`);
   });
 
   server.on('error', (err) => {

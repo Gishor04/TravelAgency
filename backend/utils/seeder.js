@@ -30,8 +30,8 @@ const importData = async () => {
 
     // Create Admin User
     const createdAdmin = await User.create({
-      name: 'Executive Admin',
-      email: 'admin@auratravels.com',
+      name: 'Globevia Executive Admin',
+      email: 'admin@globeviatravel.com',
       password: 'admin123',
       role: 'admin'
     });
@@ -50,7 +50,7 @@ const importData = async () => {
 
     await Review.insertMany(reviewsToInsert);
 
-    console.log('✅ Database Seeded Successfully with Admin & User accounts!');
+    console.log('✅ Database Seeded Successfully with Globevia Travel Admin & User accounts!');
     process.exit();
   } catch (error) {
     console.error(`Error with Seeding: ${error.message}`);

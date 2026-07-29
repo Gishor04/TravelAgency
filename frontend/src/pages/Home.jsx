@@ -152,7 +152,7 @@ export default function Home() {
       <section style={{ padding: '60px 20px', maxWidth: '1400px', margin: '0 auto' }}>
         <div className="glass-panel" style={{ padding: '50px 40px', background: 'linear-gradient(135deg, rgba(37,99,235,0.2) 0%, rgba(124,58,237,0.2) 100%)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '30px' }}>
           <div style={{ maxWidth: '650px' }}>
-            <span className="badge-pill badge-gold" style={{ marginBottom: '12px' }}>AURA AI ORCHESTRATION</span>
+            <span className="badge-pill badge-gold" style={{ marginBottom: '12px' }}>GLOBEVIA AI ORCHESTRATION</span>
             <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '16px', color: 'var(--text-primary)' }}>
               Let AI Craft Your Perfect Day-by-Day Itinerary in Seconds
             </h2>

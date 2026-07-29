@@ -1,6 +1,7 @@
 import Booking from '../models/Booking.js';
 import Payment from '../models/Payment.js';
 import TourPackage from '../models/TourPackage.js';
+import User from '../models/User.js';
 
 export const createBooking = async (req, res) => {
   try {
@@ -30,7 +31,7 @@ export const createBooking = async (req, res) => {
     let totalAmount = Math.round(basePrice * totalTravelers + extrasTotal);
     let discountAmount = 0;
 
-    if (couponCode.toUpperCase() === 'AURA2026' || couponCode.toUpperCase() === 'LUXURY20') {
+    if (couponCode.toUpperCase() === 'GLOBEVIA2026' || couponCode.toUpperCase() === 'LUXURY20') {
       discountAmount = Math.round(totalAmount * 0.15);
       totalAmount -= discountAmount;
     }
@@ -38,12 +39,27 @@ export const createBooking = async (req, res) => {
     const depositPaid = paymentType === 'deposit' ? Math.round(totalAmount * 0.3) : totalAmount;
     const balanceDue = totalAmount - depositPaid;
 
-    const bookingNumber = 'AUR-' + Math.floor(100000 + Math.random() * 900000);
+    const bookingNumber = 'GLB-' + Math.floor(100000 + Math.random() * 900000);
     const transactionId = 'TXN-' + Math.floor(10000000 + Math.random() * 90000000);
+
+    // Determine booking User ID
+    let userId = req.user ? (req.user._id || req.user.id) : null;
+    if (!userId && passengers.length > 0 && passengers[0].email) {
+      try {
+        const foundUser = await User.findOne({ email: passengers[0].email.toLowerCase() });
+        if (foundUser) userId = foundUser._id;
+      } catch (e) {
+        // Fallback
+      }
+    }
+
+    if (!userId) {
+      userId = '66aa11bb22cc33dd44ee55ff'; // Default guest ID fallback
+    }
 
     const bookingData = {
       bookingNumber,
-      user: req.user ? req.user.id : '66aa11bb22cc33dd44ee55ff',
+      user: userId,
       tourPackage: packageId,
       selectedDate: new Date(selectedDate || Date.now()),
       travelers: { adults, children },
@@ -101,7 +117,15 @@ export const getMyBookings = async (req, res) => {
   try {
     let bookings = [];
     try {
-      bookings = await Booking.find({ user: req.user.id }).populate('tourPackage').sort({ createdAt: -1 });
+      const userObjId = req.user._id || req.user.id;
+      const userEmail = req.user.email ? req.user.email.toLowerCase() : '';
+
+      bookings = await Booking.find({
+        $or: [
+          { user: userObjId },
+          { 'passengers.email': new RegExp(`^${userEmail}$`, 'i') }
+        ]
+      }).populate('tourPackage').sort({ createdAt: -1 });
     } catch (e) {
       bookings = [];
     }
