@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
+const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_jwt_key_travel_2026_luxury_secure_token_987654321';
+
 export const protect = async (req, res, next) => {
   let token;
 
@@ -13,10 +15,21 @@ export const protect = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
-    req.user = await User.findById(decoded.id).select('-password');
+    const decoded = jwt.verify(token, JWT_SECRET);
+    try {
+      req.user = await User.findById(decoded.id).select('-password');
+    } catch (e) {
+      req.user = null;
+    }
+
     if (!req.user) {
-      req.user = { _id: decoded.id, id: decoded.id, role: decoded.role || 'user', name: 'Traveler' };
+      req.user = {
+        _id: decoded.id,
+        id: decoded.id,
+        role: decoded.role || 'user',
+        name: 'Globevia Traveler',
+        email: 'traveler@globeviatravel.com'
+      };
     }
     next();
   } catch (err) {
@@ -33,10 +46,20 @@ export const optionalAuth = async (req, res, next) => {
 
   if (token) {
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
-      req.user = await User.findById(decoded.id).select('-password');
+      const decoded = jwt.verify(token, JWT_SECRET);
+      try {
+        req.user = await User.findById(decoded.id).select('-password');
+      } catch (e) {
+        req.user = null;
+      }
       if (!req.user) {
-        req.user = { _id: decoded.id, id: decoded.id, role: decoded.role || 'user', name: 'Traveler' };
+        req.user = {
+          _id: decoded.id,
+          id: decoded.id,
+          role: decoded.role || 'user',
+          name: 'Globevia Traveler',
+          email: 'traveler@globeviatravel.com'
+        };
       }
     } catch (err) {
       req.user = null;

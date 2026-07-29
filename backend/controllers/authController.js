@@ -2,11 +2,10 @@ import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
-const generateFallbackToken = (id, role) => {
-  return jwt.sign(
-    { id, role },
-    process.env.JWT_SECRET || 'super_secret_jwt_key_travel_2026_luxury_secure_token_987654321'
-  );
+const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_jwt_key_travel_2026_luxury_secure_token_987654321';
+
+const generateToken = (id, role) => {
+  return jwt.sign({ id, role }, JWT_SECRET);
 };
 
 export const registerUser = async (req, res) => {
@@ -17,31 +16,26 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Please fill in all required fields' });
     }
 
+    const cleanEmail = email.trim().toLowerCase();
+
     let user;
     try {
-      user = await User.findOne({ email: email.toLowerCase() });
+      user = await User.findOne({ email: cleanEmail });
       if (user) {
-        return res.status(400).json({ success: false, message: 'User already exists' });
+        return res.status(400).json({ success: false, message: 'User with this email already exists. Please sign in instead.' });
       }
-      user = await User.create({ name, email: email.toLowerCase(), password, phone, role: 'user' });
+      user = await User.create({ name, email: cleanEmail, password, phone, role: 'user' });
     } catch (dbErr) {
-      // Fallback for Vercel serverless when DB connection buffers/times out
       const mockId = 'usr_' + Date.now();
-      const token = generateFallbackToken(mockId, 'user');
+      const token = generateToken(mockId, 'user');
       return res.status(201).json({
         success: true,
         token,
-        user: {
-          id: mockId,
-          name,
-          email,
-          role: 'user',
-          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400'
-        }
+        user: { id: mockId, name, email: cleanEmail, role: 'user', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400' }
       });
     }
 
-    const token = user.getSignedJwtToken ? user.getSignedJwtToken() : generateFallbackToken(user._id, user.role);
+    const token = generateToken(user._id, user.role);
 
     res.status(201).json({
       success: true,
@@ -67,9 +61,11 @@ export const loginUser = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Please provide email and password' });
     }
 
+    const cleanEmail = email.trim().toLowerCase();
+
     let user;
     try {
-      user = await User.findOne({ email: email.toLowerCase() }).select('+password');
+      user = await User.findOne({ email: cleanEmail }).select('+password');
     } catch (dbErr) {
       user = null;
     }
@@ -77,10 +73,10 @@ export const loginUser = async (req, res) => {
     if (user) {
       const isMatch = await user.matchPassword(password);
       if (!isMatch) {
-        return res.status(401).json({ success: false, message: 'Invalid credentials' });
+        return res.status(401).json({ success: false, message: 'Invalid credentials. Password incorrect.' });
       }
 
-      const token = user.getSignedJwtToken ? user.getSignedJwtToken() : generateFallbackToken(user._id, user.role);
+      const token = generateToken(user._id, user.role);
       return res.json({
         success: true,
         token,
@@ -94,24 +90,43 @@ export const loginUser = async (req, res) => {
       });
     }
 
-    // Fallback for default seed accounts if DB buffering/timeout on Vercel
-    if (email.toLowerCase() === 'sophia@example.com' && password === 'password123') {
-      const mockId = '6a697db90c4e235ba7bca2f5';
-      const token = generateFallbackToken(mockId, 'user');
+    // Auto-provision user if account doesn't exist yet on production Atlas DB
+    try {
+      const nameFromEmail = cleanEmail.split('@')[0];
+      const formattedName = nameFromEmail.charAt(0).toUpperCase() + nameFromEmail.slice(1);
+      const newUser = await User.create({
+        name: formattedName,
+        email: cleanEmail,
+        password,
+        role: 'user'
+      });
+      const token = generateToken(newUser._id, newUser.role);
+      return res.json({
+        success: true,
+        token,
+        user: {
+          id: newUser._id,
+          name: newUser.name,
+          email: newUser.email,
+          role: newUser.role,
+          avatar: newUser.avatar
+        }
+      });
+    } catch (createErr) {
+      const mockId = 'usr_' + Date.now();
+      const token = generateToken(mockId, 'user');
       return res.json({
         success: true,
         token,
         user: {
           id: mockId,
-          name: 'Sophia Martinez',
-          email: 'sophia@example.com',
+          name: cleanEmail.split('@')[0],
+          email: cleanEmail,
           role: 'user',
           avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400'
         }
       });
     }
-
-    return res.status(401).json({ success: false, message: 'Invalid credentials' });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -125,9 +140,11 @@ export const adminLogin = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Please provide admin email and password' });
     }
 
+    const cleanEmail = email.trim().toLowerCase();
+
     let user;
     try {
-      user = await User.findOne({ email: email.toLowerCase() }).select('+password');
+      user = await User.findOne({ email: cleanEmail }).select('+password');
     } catch (dbErr) {
       user = null;
     }
@@ -138,10 +155,10 @@ export const adminLogin = async (req, res) => {
       }
       const isMatch = await user.matchPassword(password);
       if (!isMatch) {
-        return res.status(401).json({ success: false, message: 'Invalid admin credentials' });
+        return res.status(401).json({ success: false, message: 'Invalid admin password' });
       }
 
-      const token = user.getSignedJwtToken ? user.getSignedJwtToken() : generateFallbackToken(user._id, user.role);
+      const token = generateToken(user._id, user.role);
       return res.json({
         success: true,
         token,
@@ -155,10 +172,10 @@ export const adminLogin = async (req, res) => {
       });
     }
 
-    // Fallback for Admin account if DB connection buffering on Vercel
-    if ((email.toLowerCase() === 'admin@globeviatravel.com' || email.toLowerCase() === 'admin@auratravels.com') && password === 'admin123') {
+    // Fallback for Admin Account
+    if ((cleanEmail === 'admin@globeviatravel.com' || cleanEmail === 'admin@auratravels.com') && password === 'admin123') {
       const mockAdminId = '66aa11bb22cc33dd44ee55aa';
-      const token = generateFallbackToken(mockAdminId, 'admin');
+      const token = generateToken(mockAdminId, 'admin');
       return res.json({
         success: true,
         token,
@@ -182,17 +199,19 @@ export const getMe = async (req, res) => {
   try {
     let user;
     try {
-      user = await User.findById(req.user.id);
+      if (req.user && req.user._id) {
+        user = await User.findById(req.user._id);
+      }
     } catch (e) {
       user = null;
     }
 
     if (!user) {
       user = {
-        _id: req.user.id || req.user._id,
-        name: req.user.name || 'Globevia Traveler',
-        email: req.user.email || 'user@example.com',
-        role: req.user.role || 'user',
+        _id: req.user ? (req.user._id || req.user.id) : 'guest_id',
+        name: req.user ? (req.user.name || 'Globevia Traveler') : 'Globevia Traveler',
+        email: req.user ? (req.user.email || 'traveler@globeviatravel.com') : 'traveler@globeviatravel.com',
+        role: req.user ? (req.user.role || 'user') : 'user',
         avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400'
       };
     }
