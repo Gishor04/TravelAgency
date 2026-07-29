@@ -40,7 +40,7 @@ export const MOCK_PACKAGES = [
       "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800"
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "",
     mapCoordinates: { lat: -8.4095, lng: 115.1889 },
     ratings: 4.95,
     reviewCount: 148,
@@ -259,6 +259,108 @@ export const MOCK_PACKAGES = [
     itinerary: [
       { day: 1, title: "Futuristic Tokyo Welcome", description: "Check in at Shinjuku, visit Shibuya Crossing night walk.", activities: ["Shibuya Crossing", "Skytree view"], meals: ["Dinner"], accommodation: "Keio Plaza Tokyo" }
     ]
+  },
+  {
+    _id: "pkg_106",
+    title: "Paris & French Riviera Mediterranean Yacht Escape",
+    slug: "paris-french-riviera-yacht-escape",
+    category: "Cruise Packages",
+    destination: "Paris, Nice & Monaco",
+    country: "France",
+    city: "Paris",
+    price: 3290,
+    discountPrice: 2990,
+    durationDays: 7,
+    durationNights: 6,
+    maxGroupSize: 10,
+    availableDates: ["2026-08-20", "2026-09-15", "2026-10-05"],
+    departureAirport: "Paris CDG",
+    tourType: "Private Yacht & Eiffel Riviera Expedition",
+    highlights: [
+      "Private VIP Eiffel Tower Champagne Terrace Dinner",
+      "Sunset Private Yacht Cruise along Monaco coastline",
+      "Luxury Fragrance Masterclass in Grasse",
+      "Helicopter Transfer from Nice to Monte Carlo"
+    ],
+    inclusions: ["5-Star Palace Stay", "Private Yacht Charter", "Daily Breakfast & Champagne", "Helicopter Transfer"],
+    exclusions: ["Shopping Expenses"],
+    hotelDetails: {
+      name: "Hotel de Crillon Paris & Hotel Hermitage Monte-Carlo",
+      rating: 5,
+      roomType: "Palace Suite",
+      amenities: ["Michelin Dining", "Private Yacht Access", "Personal Butler"]
+    },
+    flightDetails: {
+      airline: "Air France",
+      included: true,
+      class: "Business Class"
+    },
+    mealPlan: "Full Board",
+    images: [
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800"
+    ],
+    videoUrl: "",
+    mapCoordinates: { lat: 48.8566, lng: 2.3522 },
+    ratings: 4.97,
+    reviewCount: 162,
+    featured: true,
+    trending: true,
+    seasonalOffer: true,
+    itinerary: [
+      { day: 1, title: "VIP Arrival in Paris & Eiffel Champagne", description: "Private luxury Rolls-Royce transfer to Hotel de Crillon. Private evening access to Eiffel Tower balcony.", activities: ["Rolls-Royce Transfer", "Eiffel Balcony"], meals: ["Dinner"], accommodation: "Hotel de Crillon" }
+    ]
+  },
+  {
+    _id: "pkg_107",
+    title: "Santorini & Mykonos Aegean Cliffside Horizon",
+    slug: "santorini-mykonos-aegean-horizon",
+    category: "Beach Holidays",
+    destination: "Oia & Little Venice",
+    country: "Greece",
+    city: "Athens",
+    price: 2450,
+    discountPrice: 2150,
+    durationDays: 6,
+    durationNights: 5,
+    maxGroupSize: 8,
+    availableDates: ["2026-08-12", "2026-09-02", "2026-10-01"],
+    departureAirport: "Athens (ATH)",
+    tourType: "Cave Villa & Sunset Cruise",
+    highlights: [
+      "Cave Pool Villa carved into Oia Caldera cliffside",
+      "Catamaran sunset sail around Red Beach & Volcanic Springs",
+      "Private wine tasting tour at Santo Wines Vineyard",
+      "Helicopter island transfer between Santorini & Mykonos"
+    ],
+    inclusions: ["Luxury Cliffside Cave Villa", "Private Catamaran Cruise", "Inter-Island Ferry/Heli", "Daily Greek Breakfast"],
+    exclusions: ["Personal Souvenirs"],
+    hotelDetails: {
+      name: "Canaves Oia Suites & Cavo Tagoo Mykonos",
+      rating: 5,
+      roomType: "Caldera Cave Pool Suite",
+      amenities: ["Infinite Caldera Pool", "Private Hot Tub", "Sunset Deck"]
+    },
+    flightDetails: {
+      airline: "Aegean Airlines",
+      included: true,
+      class: "Economy"
+    },
+    mealPlan: "Breakfast & Wine Tasting",
+    images: [
+      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800"
+    ],
+    videoUrl: "",
+    mapCoordinates: { lat: 36.4618, lng: 25.3753 },
+    ratings: 4.96,
+    reviewCount: 175,
+    featured: true,
+    trending: true,
+    seasonalOffer: true,
+    itinerary: [
+      { day: 1, title: "Santorini Arrival & Oia Sunset", description: "Private check-in at Canaves Oia. Enjoy world-famous Oia sunset from your private plunge pool.", activities: ["Oia Stroll", "Wine Tasting"], meals: ["Dinner"], accommodation: "Canaves Oia Suites" }
+    ]
   }
 ];
 
@@ -267,7 +369,9 @@ export const MOCK_DESTINATIONS = [
   { _id: "dest_2", name: "Swiss Alps", country: "Switzerland", region: "Europe", coverImage: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&q=80&w=800", description: "Majestic snow-capped peaks, scenic panoramic trains, and world-class luxury resorts.", bestTimeToVisit: "December to April (Skiing), June to Sept (Trekking)", tourCount: 9, featured: true },
   { _id: "dest_3", name: "Maldives", country: "Maldives", region: "Indian Ocean", coverImage: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800", description: "Turquoise lagoons, private island overwater bungalows, and pristine coral reefs.", bestTimeToVisit: "November to April", tourCount: 18, featured: true },
   { _id: "dest_4", name: "Sri Lanka", country: "Sri Lanka", region: "South Asia", coverImage: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&q=80&w=800", description: "Ancient UNESCO ruins, lush tea hills, wildlife leopard safaris, and tropical beaches.", bestTimeToVisit: "Year-Round", tourCount: 22, featured: true },
-  { _id: "dest_5", name: "Tokyo & Kyoto", country: "Japan", region: "East Asia", coverImage: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&q=80&w=800", description: "A seamless blend of neon futuristic technology and tranquil ancient Zen shrines.", bestTimeToVisit: "March to May & Sept to Nov", tourCount: 12, featured: true }
+  { _id: "dest_5", name: "Tokyo & Kyoto", country: "Japan", region: "East Asia", coverImage: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&q=80&w=800", description: "A seamless blend of neon futuristic technology and tranquil ancient Zen shrines.", bestTimeToVisit: "March to May & Sept to Nov", tourCount: 12, featured: true },
+  { _id: "dest_6", name: "Paris & French Riviera", country: "France", region: "Europe", coverImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800", description: "Eiffel tower romance, Mediterranean yachting, and world-renowned gastronomy.", bestTimeToVisit: "May to October", tourCount: 11, featured: true },
+  { _id: "dest_7", name: "Santorini", country: "Greece", region: "Europe", coverImage: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&q=80&w=800", description: "Whitewashed cliffside cave villas, volcanic beaches, and iconic Aegean sunsets.", bestTimeToVisit: "May to October", tourCount: 15, featured: true }
 ];
 
 export const MOCK_BLOGS = [
@@ -294,6 +398,18 @@ export const MOCK_BLOGS = [
     readTime: "8 min read",
     featured: true,
     publishedAt: "2026-07-15"
+  },
+  {
+    _id: "blog_3",
+    title: "How to Experience 5-Star Maldives Overwater Villas on a VIP Smart Budget",
+    slug: "maldives-5-star-smart-budget-guide",
+    category: "Travel Tips",
+    author: "Sophia Martinez",
+    coverImage: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800",
+    content: "Discover how booking off-peak transition months combined with Globevia AI promo vouchers saves up to 35% on private island seaplane packages...",
+    readTime: "5 min read",
+    featured: true,
+    publishedAt: "2026-07-25"
   }
 ];
 
@@ -304,7 +420,7 @@ export const MOCK_REVIEWS = [
     userAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
     rating: 5,
     title: "Unforgettable Bali Honeymoon!",
-    comment: "The Viceroy Ubud villa was beyond breathtaking! Antigravity AI custom itinerary was spot on. Every detail from VIP private transfers to the helicopter ride was seamless.",
+    comment: "The Viceroy Ubud villa was beyond breathtaking! Globevia AI custom itinerary was spot on. Every detail from VIP private transfers to the helicopter ride was seamless.",
     verifiedBooking: true,
     createdAt: "2026-07-10"
   },
@@ -314,8 +430,18 @@ export const MOCK_REVIEWS = [
     userAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
     rating: 5,
     title: "Excellence Class Glacier Express was a dream!",
-    comment: "Flawless service, incredible food, and effortless booking through Aura Luxury Travels. The multi-language AI assistant helped us plan our daily outings with ease.",
+    comment: "Flawless service, incredible food, and effortless booking through Globevia Travel. The multi-language AI assistant helped us plan our daily outings with ease.",
     verifiedBooking: true,
     createdAt: "2026-07-04"
+  },
+  {
+    _id: "rev_3",
+    userName: "Isabella Rossi",
+    userAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+    rating: 5,
+    title: "Santorini Cave Villa was pure perfection!",
+    comment: "The view over Oia caldera from our private infinity pool was stunning. Globevia 24/7 WhatsApp concierge took care of every restaurant reservation for us.",
+    verifiedBooking: true,
+    createdAt: "2026-07-22"
   }
 ];

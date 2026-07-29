@@ -16,16 +16,16 @@ export const connectDB = async () => {
   if (!cached.promise) {
     const opts = {
       bufferCommands: true,
-      serverSelectionTimeoutMS: 5000,
-      connectTimeoutMS: 10000
+      serverSelectionTimeoutMS: 2000, // Ultra-fast 2s timeout for instant performance
+      connectTimeoutMS: 5000
     };
 
     const uri = process.env.MONGO_URI || ATLAS_URI;
     cached.promise = mongoose.connect(uri, opts).then((m) => {
-      console.log('MongoDB Atlas Serverless Connected');
+      console.log('MongoDB Atlas Connected');
       return m;
     }).catch((err) => {
-      console.warn('MongoDB Serverless Connection Error:', err.message);
+      console.warn('MongoDB Connection Warning:', err.message);
       cached.promise = null;
       return null;
     });
