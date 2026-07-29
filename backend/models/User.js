@@ -36,10 +36,12 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+// Sign JWT token without ANY expiration (no expiresIn option)
 userSchema.methods.getSignedJwtToken = function () {
-  return jwt.sign({ id: this._id, role: this.role }, process.env.JWT_SECRET || 'fallback_secret', {
-    expiresIn: process.env.JWT_EXPIRE || '30d'
-  });
+  return jwt.sign(
+    { id: this._id, role: this.role },
+    process.env.JWT_SECRET || 'fallback_secret'
+  );
 };
 
 export default mongoose.models.User || mongoose.model('User', userSchema);
