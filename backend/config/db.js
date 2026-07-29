@@ -1,14 +1,41 @@
 import mongoose from 'mongoose';
 
+const ATLAS_URI = 'mongodb+srv://gishor14_db_user:20814@cluster0.vsdvdb3.mongodb.net/luxury_travel_db?retryWrites=true&w=majority&appName=Cluster0';
+
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
 export const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/luxury_travel_db', {
-      serverSelectionTimeoutMS: 2000
-    });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-    return true;
-  } catch (error) {
-    console.warn(`MongoDB Connection Warning: ${error.message}. Running in Mock / Hybrid Data Mode.`);
-    return false;
+  if (cached.conn && mongoose.connection.readyState === 1) {
+    return cached.conn;
   }
+
+  if (!cached.promise) {
+    const opts = {
+      bufferCommands: true,
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 10000
+    };
+
+    const uri = process.env.MONGO_URI || ATLAS_URI;
+    cached.promise = mongoose.connect(uri, opts).then((m) => {
+      console.log('MongoDB Atlas Serverless Connected');
+      return m;
+    }).catch((err) => {
+      console.warn('MongoDB Serverless Connection Error:', err.message);
+      cached.promise = null;
+      return null;
+    });
+  }
+
+  try {
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+  }
+
+  return cached.conn;
 };

@@ -19,17 +19,25 @@ const app = express();
 
 // Security Middlewares
 app.use(helmet({ contentSecurityPolicy: false }));
+
 // Fix CORS 403 Forbidden by allowing requesting origin dynamically with credentials
 app.use(cors({
   origin: (origin, callback) => callback(null, true),
   credentials: true
 }));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+// Auto DB Connection Middleware for Vercel Serverless Function execution
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
 // Rate Limiter
 const limiter = rateLimit({
@@ -82,6 +90,10 @@ const startServer = (port) => {
   });
 };
 
-connectDB().then(() => {
-  startServer(Number(DEFAULT_PORT));
-});
+if (!process.env.VERCEL) {
+  connectDB().then(() => {
+    startServer(Number(DEFAULT_PORT));
+  });
+}
+
+export default app;
